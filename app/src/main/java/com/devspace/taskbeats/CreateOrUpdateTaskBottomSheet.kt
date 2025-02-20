@@ -17,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 
 class CreateOrUpdateTaskBottomSheet(
-    private val categoryList: List<CategoryUiData>,
+    private val categoryList: List<CategoryEntity>,
     private val task: TaskUiData? = null,
     private val onCreateClicked: (TaskUiData) -> Unit,
     private val onUpdateClicked: (TaskUiData) -> Unit,
@@ -35,11 +35,16 @@ class CreateOrUpdateTaskBottomSheet(
         val btnCreateOrUpdate = view.findViewById<Button>(R.id.btn_task_create_or_update)
         val btnDelete = view.findViewById<Button>(R.id.btn_delete)
         val tieTaskName = view.findViewById<TextInputEditText>(R.id.tie_task_name)
-
-        val categoryStr: List<String> = categoryList.map { it.name }
         val spinner: Spinner = view.findViewById(R.id.category_list)
 
         var taskCategory: String? = null
+        val categoryListTemp = mutableListOf("Select")
+        categoryListTemp.addAll(
+            categoryList.map{ it.name}
+        )
+        val categoryStr: List<String> = categoryListTemp
+
+
         ArrayAdapter(
             requireActivity().baseContext,
             android.R.layout.simple_spinner_item,
@@ -97,7 +102,7 @@ class CreateOrUpdateTaskBottomSheet(
 
         btnCreateOrUpdate.setOnClickListener {
             val name = tieTaskName.text.toString().trim()
-            if (taskCategory != null && name.isNotEmpty()) {
+            if (taskCategory != "Select" && name.isNotEmpty()) {
 
 
                 if(task== null){
