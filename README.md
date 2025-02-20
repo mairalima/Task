@@ -15,3 +15,9 @@
 - **Programming Language**: Kotlin
 - **IDE**: Android Studio
 - **Database**: [Room]
+
+- ## Images
+
+<img src = "https://github.com/user-attachments/assets/b0cee725-443f-42de-b43a-545e465bc6ae" width="260"/>
+
+<img src = "https://github.com/user-attachments/assets/d1730c3b-2ce8-4584-beb2-a01f8317123d" width="260"/>
